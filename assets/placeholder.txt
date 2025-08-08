@@ -1,0 +1,24 @@
+# Assets Folder
+
+This folder is for storing images and other assets for the portfolio website.
+
+## Recommended Images to Add:
+
+1. **hero-image.jpg** - Data science illustration for hero section
+2. **profile-photo.jpg** - Professional headshot for about section
+3. **project1.jpg** - Screenshot or visualization for Pricing Optimization project
+4. **project2.jpg** - Screenshot or visualization for Demand Forecasting project
+5. **project3.jpg** - Screenshot or visualization for Customer Journey Analysis project
+
+## Image Guidelines:
+
+- Use high-quality images (minimum 800px width)
+- Optimize for web (compress to reduce file size)
+- Use JPG format for photos, PNG for graphics with transparency
+- Keep file sizes under 500KB for optimal loading speed
+
+## How to Replace Placeholder Images:
+
+1. Add your images to this folder
+2. Update the HTML file to use your images instead of placeholder divs
+3. Example: Replace `<div class="placeholder-image">` with `<img src="assets/your-image.jpg" alt="Description">`
