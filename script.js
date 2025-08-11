@@ -26,16 +26,16 @@ function switchLanguage(lang) {
     // Update HTML lang attribute
     document.documentElement.lang = lang;
     
-    // Update language toggle button text
-    const langToggle = document.getElementById('langToggle');
-    if (langToggle) {
-        const span = langToggle.querySelector('span');
-        if (span) {
-            if (lang === 'pt') {
-                span.textContent = 'EN';
-            } else {
-                span.textContent = 'PT';
-            }
+    // Update slider visual state
+    const langSlider = document.getElementById('langSlider');
+    const sliderThumb = document.getElementById('sliderThumb');
+    if (langSlider && sliderThumb) {
+        if (lang === 'pt') {
+            langSlider.classList.add('pt');
+            sliderThumb.classList.add('pt');
+        } else {
+            langSlider.classList.remove('pt');
+            sliderThumb.classList.remove('pt');
         }
     }
     
@@ -43,13 +43,27 @@ function switchLanguage(lang) {
     localStorage.setItem('preferredLanguage', lang);
 }
 
-// Initialize language toggle
+// Initialize language slider
 document.addEventListener('DOMContentLoaded', () => {
-    const langToggle = document.getElementById('langToggle');
-    if (langToggle) {
-        langToggle.addEventListener('click', () => {
+    const langSlider = document.getElementById('langSlider');
+    const sliderThumb = document.getElementById('sliderThumb');
+    
+    if (langSlider && sliderThumb) {
+        // Click on slider to toggle language
+        langSlider.addEventListener('click', () => {
             const newLang = currentLanguage === 'en' ? 'pt' : 'en';
             switchLanguage(newLang);
+        });
+        
+        // Click on specific flag to switch to that language
+        document.querySelectorAll('.flag').forEach(flag => {
+            flag.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent slider click event
+                const lang = flag.getAttribute('data-lang');
+                if (lang !== currentLanguage) {
+                    switchLanguage(lang);
+                }
+            });
         });
     }
     
