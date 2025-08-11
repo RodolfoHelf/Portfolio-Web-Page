@@ -1,3 +1,65 @@
+// Language switching functionality
+let currentLanguage = 'en';
+
+function switchLanguage(lang) {
+    currentLanguage = lang;
+    
+    // Update all elements with data attributes
+    document.querySelectorAll('[data-en][data-pt]').forEach(element => {
+        if (lang === 'pt') {
+            element.textContent = element.getAttribute('data-pt');
+        } else {
+            element.textContent = element.getAttribute('data-en');
+        }
+    });
+    
+    // Update page title
+    const title = document.querySelector('title');
+    if (title) {
+        if (lang === 'pt') {
+            title.textContent = title.getAttribute('data-pt');
+        } else {
+            title.textContent = title.getAttribute('data-en');
+        }
+    }
+    
+    // Update HTML lang attribute
+    document.documentElement.lang = lang;
+    
+    // Update language toggle button text
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        const span = langToggle.querySelector('span');
+        if (span) {
+            if (lang === 'pt') {
+                span.textContent = 'EN';
+            } else {
+                span.textContent = 'PT';
+            }
+        }
+    }
+    
+    // Store language preference
+    localStorage.setItem('preferredLanguage', lang);
+}
+
+// Initialize language toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', () => {
+            const newLang = currentLanguage === 'en' ? 'pt' : 'en';
+            switchLanguage(newLang);
+        });
+    }
+    
+    // Check for saved language preference
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang) {
+        switchLanguage(savedLang);
+    }
+});
+
 // Mobile Navigation Toggle
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
