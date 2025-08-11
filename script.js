@@ -30,12 +30,12 @@ function switchLanguage(lang) {
     const langSlider = document.getElementById('langSlider');
     const sliderThumb = document.getElementById('sliderThumb');
     if (langSlider && sliderThumb) {
-        if (lang === 'pt') {
-            langSlider.classList.add('pt');
-            sliderThumb.classList.add('pt');
+        if (lang === 'en') {
+            langSlider.classList.add('en');
+            sliderThumb.classList.add('en');
         } else {
-            langSlider.classList.remove('pt');
-            sliderThumb.classList.remove('pt');
+            langSlider.classList.remove('en');
+            sliderThumb.classList.remove('en');
         }
     }
     
